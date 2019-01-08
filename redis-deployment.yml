@@ -6,10 +6,15 @@ metadata:
     app: demo-voting-app
 spec:
   replicas: 1
+
+
   selector:
+    #under matchlabels - copy labels from redis pod definition
     matchLabels:
       name: redis-pod
       app: demo-voting-app
+   #under template - copy everything under metadata as well as spec from redis pod
+    # notice that template also has both METADATA and SPEC#
   template:
     metadata:
       name: redis-pod
