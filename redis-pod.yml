@@ -4,6 +4,7 @@ metadata:
   name: redis-pod
   labels:
     name: redis-pod
+    # All definitions for the same app have the same app name (all diff. pods)
     app: demo-voting-app
 spec:
   containers:

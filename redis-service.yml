@@ -5,11 +5,23 @@ metadata:
   labels:
     name: redis-service
     app: demo-voting-app
+
 spec:
   ports:
   - port: 6379
-    name: redis-something
+    # Where does it listen from ?
+    # if I have 5 diff pods (5 diff containers)
+    # When creating this service we are telling it to listen on port 6379 and forward to 6379
+    # But where exactly is it listening from ? and what exactly does it forward to ?
+    # need to link this service to one of the pods that we created so that it knows to work
+    # work with that particular docker container
+    # so how do we specify or link this service to a particular POD ? we use selectors
     targetPort: 6379
+    # selectors and labels allow us to connect services to pods
+    # under selector we specify a list of FILTERS using LABELS and hence we label each pod with a name
+
   selector:
      name: redis-pod
      app: demo-voting-app
+
+

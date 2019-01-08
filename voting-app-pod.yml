@@ -1,13 +1,25 @@
 apiVersion: v1
+
 kind: Pod
+
 metadata:
   name: voting-app-pod
+  #labels are used to tag the pods/resources on k8s
+  # this way you can later search these resources based on these labels
+  # services will use these labels to connect and find these pods
   labels:
+  # the name of this pod is voting-app-pod
+  # the application name is demo-voting-app
     name: voting-app-pod
     app: demo-voting-app
+  # Since this is a pod, I will want to have containers inside it (maybe multiple hence the list (-))
+  # everything under spec depends on the type of definition that you are creating
+  # since this is a POD I will add CONTAINERS
+
 spec:
   containers:
   - name: voting-app
+  # copy name of example voting app for VOTE from dockersamples on dockerhub
     image: dockersamples/examplevotingapp_vote
     ports:
          - containerPort: 80
